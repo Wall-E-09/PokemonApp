@@ -10,6 +10,9 @@ import com.example.pokemonapp.model.PokemonDetailResponse
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+const val MIN_POKEMON_SCREEN = 8
+const val MAX_POKEMON_SCREEN = 12
+
 class PokemonViewModel : ViewModel() {
     private val apiService = PokeApiService.create()
 
@@ -23,7 +26,7 @@ class PokemonViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = apiService.getPokemonList()
-                val randomSize = Random.nextInt(8, 12)
+                val randomSize = Random.nextInt(MIN_POKEMON_SCREEN, MAX_POKEMON_SCREEN)
                 val selectedPokemon = response.results.shuffled().take(randomSize)
 
                 val details = selectedPokemon.mapNotNull {
@@ -38,10 +41,6 @@ class PokemonViewModel : ViewModel() {
                 pokemonList = emptyList()
             }
         }
-    }
-
-    fun toggleDropDownMenu() {
-        isDropDownMenuOpen = !isDropDownMenuOpen
     }
 
     fun closeDropDownMenu() {

@@ -29,7 +29,8 @@ fun PokemonScreen(viewModel: PokemonViewModel) {
                 columns = GridCells.Fixed(3),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
+                    .weight(1f)
+                    .padding(bottom = 160.dp),
                 contentPadding = PaddingValues(1.dp)
             ) {
                 items(viewModel.pokemonList) { pokemon ->
